@@ -1,0 +1,217 @@
+
+---
+
+# Day 1 – What is an AI Agent?
+
+---
+
+## 1. Introduction
+
+When we talk about an **agent** in daily life, we usually think of a person who works on our behalf — for example, a **travel agent** books flights for us, or a **real-estate agent** helps us find a house.
+
+In **Artificial Intelligence (AI)**, an **Agent** means something similar:
+👉 An **AI Agent is a computer program or system that can observe its surroundings, make decisions, and take actions automatically.**
+
+You can think of it like a **robot brain** or a **virtual assistant**.
+
+An **AI Agent = Perception (Input) → Reasoning (Thinking) → Action (Output).**
+
+---
+
+## 2. How AI Agents Work
+
+Every AI agent follows the **Sense → Think → Act** cycle:
+
+1. **Perceive (Sense):** The agent observes the environment.
+
+   * Example: A self-driving car uses cameras and sensors to see the road.
+
+2. **Decide (Think):** The agent decides what to do based on what it observed.
+
+   * Example: The car sees a red light → decides to stop.
+
+3. **Act:** The agent performs the chosen action.
+
+   * Example: The car presses the brakes.
+
+4. **(Sometimes) Learn:** Some agents can learn from mistakes or feedback.
+
+   * Example: If taking one route always causes traffic, Google Maps learns to suggest a better one.
+
+This loop repeats again and again.
+
+---
+
+## 3. Real-World Examples
+
+AI agents are not science fiction — we use them every day.
+
+### 🗺 Google Maps
+
+* **Input:** Your location + traffic conditions.
+* **Decision:** Chooses the fastest route.
+* **Action:** Gives directions.
+
+### 💬 Chatbots (like ChatGPT or customer service bots)
+
+* **Input:** User question (“What’s my account balance?”).
+* **Decision:** Understands question, finds correct answer.
+* **Action:** Responds with the answer.
+
+### 🚗 Self-Driving Car
+
+* **Input:** Sensors, cameras, radar.
+* **Decision:** Decides when to stop, turn, or accelerate.
+* **Action:** Controls steering, brakes, and speed.
+
+### 🎬 Netflix Recommendation
+
+* **Input:** What you already watched.
+* **Decision:** Finds similar movies/shows.
+* **Action:** Suggests: “Because you watched Stranger Things, here’s Dark.”
+
+---
+
+## 4. Types of AI Agents (with Simple Examples)
+
+1. **Reactive Agent** – Acts only based on the current situation, no memory.
+
+   * Example: Thermostat (if hot → turn off heater, if cold → turn on heater).
+
+2. **Model-Based Agent** – Uses memory of the world.
+
+   * Example: A robot vacuum remembering the layout of your room.
+
+3. **Goal-Based Agent** – Works to achieve a specific goal.
+
+   * Example: GPS trying to reach a destination.
+
+4. **Utility-Based Agent** – Chooses the “best” option.
+
+   * Example: Food delivery app finds the cheapest *and* fastest option.
+
+---
+
+## 5. Analogy: Pizza Delivery Agent 🍕
+
+Imagine an **AI Pizza Delivery Agent**:
+
+1. **Input:** Customer orders pizza.
+2. **Decision:** Check traffic → choose fastest route.
+3. **Action:** Deliver pizza.
+4. **Feedback:** If delivery is late, agent learns to take another route next time.
+
+This is exactly how AI agents function: observe, decide, act, and improve.
+
+---
+
+## 6. Java Example – A Simple Agent
+
+Let’s create a **very simple AI agent in Java**.
+This agent lives in a world where it can see only two things: **Food** or **Enemy**.
+
+👉 If it sees **Food**, it eats.
+👉 If it sees an **Enemy**, it runs away.
+
+```java
+import java.util.Random;
+
+class SimpleAgent {
+    private int energy = 10;
+    private Random random = new Random();
+
+    // Step 1: Perceive the environment
+    public String perceive() {
+        String[] situations = {"food", "enemy"};
+        int choice = random.nextInt(situations.length);
+        return situations[choice];
+    }
+
+    // Step 2: Decide based on the situation
+    public String decide(String situation) {
+        if (situation.equals("food")) {
+            return "eat";
+        } else if (situation.equals("enemy")) {
+            return "run";
+        } else {
+            return "wait";
+        }
+    }
+
+    // Step 3: Act and update state
+    public void act(String action) {
+        switch (action) {
+            case "eat":
+                energy += 5;
+                System.out.println("Agent eats 🍎 → Energy = " + energy);
+                break;
+            case "run":
+                energy -= 2;
+                System.out.println("Agent runs 🏃 → Energy = " + energy);
+                break;
+            default:
+                System.out.println("Agent waits...");
+        }
+    }
+}
+
+public class AgentDemo {
+    public static void main(String[] args) {
+        SimpleAgent agent = new SimpleAgent();
+
+        // Agent lives for 5 steps
+        for (int i = 1; i <= 5; i++) {
+            System.out.println("\nStep " + i);
+            String situation = agent.perceive();
+            System.out.println("Environment: " + situation);
+
+            String action = agent.decide(situation);
+            System.out.println("Agent decides to: " + action);
+
+            agent.act(action);
+        }
+    }
+}
+```
+
+### ✅ Output (example run)
+
+```
+Step 1
+Environment: food
+Agent decides to: eat
+Agent eats 🍎 → Energy = 15
+
+Step 2
+Environment: enemy
+Agent decides to: run
+Agent runs 🏃 → Energy = 13
+```
+
+This is a **tiny agent simulation**. Even though it’s simple, it follows the exact **Sense → Think → Act** cycle.
+
+---
+
+## 7. Why Do We Care About AI Agents?
+
+AI agents are powerful because they:
+
+* **Automate work** → Chatbots reduce customer support load.
+* **Make decisions faster** → Google Maps finds best routes in seconds.
+* **Learn & improve** → Netflix improves recommendations as you watch more.
+* **Handle complex tasks** → Self-driving cars manage thousands of signals at once.
+
+Imagine if every daily task had a smart assistant (agent) helping you — that’s the future of AI.
+
+---
+
+## 8. Summary of Day 1
+
+* An **AI Agent = System that perceives, decides, and acts.**
+* **Examples:** Google Maps, Chatbots, Self-driving cars, Netflix recommendations.
+* **Cycle:** Sense → Think → Act → (Learn).
+* **Types:** Reactive, Model-Based, Goal-Based, Utility-Based.
+* We also built a **Java mini-agent** that eats food or runs from enemies.
+
+---
+
